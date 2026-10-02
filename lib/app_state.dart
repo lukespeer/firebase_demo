@@ -84,10 +84,16 @@ class ApplicationState extends ChangeNotifier {
             .listen((snapshot) {
               _guestBookMessages = [];
               for (final document in snapshot.docs) {
+                final colorValue = document.data()['color'] as int?;
+
+                final color = colorValue != null
+                    ? Color(colorValue)
+                    : Colors.black;
                 _guestBookMessages.add(
                   GuestBookMessage(
                     name: document.data()['name'] as String,
                     message: document.data()['text'] as String,
+                    color: color,
                   ),
                 );
               }
