@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart' // new
     hide EmailAuthProvider, PhoneAuthProvider; // new
 import 'package:flutter/material.dart'; // new
+import 'package:gtk_flutter/color_selector.dart';
 import 'package:gtk_flutter/guest_book.dart';
 import 'package:provider/provider.dart'; // new
 
@@ -40,6 +41,13 @@ class HomePage extends StatelessWidget {
                   YesNoSelection(
                     state: appState.attending,
                     onSelection: (attending) => appState.attending = attending,
+                  ),
+                  const Header('Message color'),
+                  ColorSelector(
+                    color: appState.messageColor,
+                    onChanged: (color) {
+                      appState.messageColor = color;
+                    },
                   ),
                   // ...to here.
                   const Header('Discussion'),

@@ -25,6 +25,7 @@ class ApplicationState extends ChangeNotifier {
   List<GuestBookMessage> get guestBookMessages => _guestBookMessages;
   int _attendees = 0;
   int get attendees => _attendees;
+  Color messageColor = Colors.white;
 
   Attending _attending = Attending.unknown;
   StreamSubscription<DocumentSnapshot>? _attendingSubscription;
