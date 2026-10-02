@@ -31,9 +31,12 @@ class HomePage extends StatelessWidget {
               children: [
                 // Add from here...
                 switch (appState.attendees) {
-                  1 => const Paragraph('1 person going'),
-                  >= 2 => Paragraph('${appState.attendees} people going'),
-                  _ => const Paragraph('No one going'),
+                  1 => const Paragraph('1 person going', Colors.white),
+                  >= 2 => Paragraph(
+                    '${appState.attendees} people going',
+                    Colors.white,
+                  ),
+                  _ => const Paragraph('No one going', Colors.white),
                 },
                 // ...to here.
                 if (appState.loggedIn) ...[

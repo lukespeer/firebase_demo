@@ -10,23 +10,46 @@ class ColorSelector extends StatelessWidget {
   final Color color;
   final ValueChanged<Color> onChanged;
 
-  static const colors = [Colors.red, Colors.green, Colors.blue];
+  static const colors = [
+    Colors.red,
+    Colors.orange,
+    Colors.yellow,
+    Colors.green,
+    Colors.blue,
+    Colors.purple,
+    Colors.pink,
+    Colors.black,
+  ];
 
   @override
   Widget build(BuildContext context) {
-    return Wrap(
-      spacing: 8,
-      children: [
-        for (final option in colors)
-          GestureDetector(
-            onTap: () => onChanged(option),
-            child: Container(
-              width: 36,
-              height: 36,
-              decoration: BoxDecoration(color: option, shape: BoxShape.circle),
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      child: Wrap(
+        spacing: 8,
+        runSpacing: 8,
+        children: [
+          for (final option in colors)
+            InkWell(
+              onTap: () => onChanged(option),
+              borderRadius: BorderRadius.circular(20),
+              child: Container(
+                width: 36,
+                height: 36,
+                decoration: BoxDecoration(
+                  color: option,
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                    color: option == color
+                        ? Theme.of(context).colorScheme.onSurface
+                        : Colors.transparent,
+                    width: 3,
+                  ),
+                ),
+              ),
             ),
-          ),
-      ],
+        ],
+      ),
     );
   }
 }

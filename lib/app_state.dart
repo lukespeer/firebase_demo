@@ -25,7 +25,12 @@ class ApplicationState extends ChangeNotifier {
   List<GuestBookMessage> get guestBookMessages => _guestBookMessages;
   int _attendees = 0;
   int get attendees => _attendees;
-  Color messageColor = Colors.white;
+  Color _messageColor = Colors.white;
+  Color get messageColor => _messageColor;
+  set messageColor(Color color) {
+    _messageColor = color;
+    notifyListeners();
+  }
 
   Attending _attending = Attending.unknown;
   StreamSubscription<DocumentSnapshot>? _attendingSubscription;
@@ -52,6 +57,7 @@ class ApplicationState extends ChangeNotifier {
         'timestamp': DateTime.now().millisecondsSinceEpoch,
         'name': FirebaseAuth.instance.currentUser!.displayName,
         'userId': FirebaseAuth.instance.currentUser!.uid,
+        'color': messageColor.toARGB32(),
       },
     );
   }
